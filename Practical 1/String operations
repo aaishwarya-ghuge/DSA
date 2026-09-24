@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s1[100], s2[100], temp[100];
+    int ch, i, start, len, flag = 1;
+
+    printf("Enter first string: ");
+    scanf("%s", s1);
+
+    printf("Enter second string: ");
+    scanf("%s", s2);
+
+    printf("\n1.Substring\n2.Palindrome\n3.Compare\n4.Copy\n5.Reverse\n");
+    printf("Enter your choice: ");
+    scanf("%d", &ch);
+
+    switch(ch) {
+
+    case 1:
+        printf("Enter start index and length: ");
+        scanf("%d%d", &start, &len);
+        for(i = start; i < start + len && s1[i] != '\0'; i++)
+            printf("%c", s1[i]);
+        break;
+
+    case 2:
+        len = strlen(s1);
+        for(i = 0; i < len / 2; i++) {
+            if(s1[i] != s1[len - 1 - i]) {
+                flag = 0;
+                break;
+            }
+        }
+        if(flag)
+            printf("Palindrome");
+        else
+            printf("Not Palindrome");
+        break;
+
+    case 3:
+        if(strcmp(s1, s2) == 0)
+            printf("Strings are Equal");
+        else
+            printf("Strings are Not Equal");
+        break;
+
+    case 4:
+        strcpy(temp, s1);
+        printf("Copied String: %s", temp);
+        break;
+
+    case 5:
+        len = strlen(s1);
+        printf("Reversed String: ");
+        for(i = len - 1; i >= 0; i--)
+            printf("%c", s1[i]);
+        break;
+    }
+
+    return 0;
+}
